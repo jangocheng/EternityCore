@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>EternityCore.Cms.Web</AssemblyName>
+    <RootNamespace>EternityCore.Cms.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App_Data\logs\**" />
+    <Content Remove="App_Data\logs\**" />
+    <EmbeddedResource Remove="App_Data\logs\**" />
+    <None Remove="App_Data\logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove=".filenesting.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.0-beta2" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
+    <PackageReference Include="OrchardCore.Admin" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Application.Targets" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.BackgroundTasks" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.CustomSettings" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.DeferredTasks" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Diagnostics" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.DisplayManagement.Liquid" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.DynamicCache" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Environment.Cache" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Environment.Shell.Data" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Features" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.HomeRoute" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Hosting.Console" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Localization" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Logging.NLog" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Navigation" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Recipes" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Resources" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Roles" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Scripting" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Settings" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Setup" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Tenants" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Themes" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Users" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="TheAdmin" Version="1.0.0-beta2-67581" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\FairyPay.Gateway\FairyPay.Gateway.csproj" />
+    <ProjectReference Include="..\Modules\FairyPay.PaymentProviders\FairyPay.PaymentProviders.csproj" />
+    <ProjectReference Include="..\Modules\FairyPay\FairyPay.csproj" />
+    <ProjectReference Include="..\Modules\OrchardCore.Data.EntityFrameworkCore\OrchardCore.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Modules\OrchardCore.Mvc.DeviceDetector\OrchardCore.Mvc.DeviceDetector.csproj" />
+    <ProjectReference Include="..\Themes\PaymentTheme\PaymentTheme.csproj" />
+  </ItemGroup>
+
+</Project>

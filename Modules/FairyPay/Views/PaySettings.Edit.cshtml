@@ -1,0 +1,10 @@
+@model FairyPay.Models.PaySettings
+<fieldset class="form-group" asp-validation-class-for="LoginEnabled">
+    <label asp-for="LoginEnabled">@T["开启登录"] <span asp-validation-for="LoginEnabled"></span></label>
+    
+    <label>
+        @*<input asp-for="LoginEnabled" type="checkbox" value="true" />*@
+        @Html.CheckBoxFor(m=>m.LoginEnabled)
+        <span class="hint">@T["允许非管理员商户登录"]</span>
+    </label>
+</fieldset>
