@@ -6,6 +6,8 @@ namespace FairyPay.PaymentProviders
     [AttributeUsage(AttributeTargets.Class)]
     public class Meta : Attribute
     {
+        private readonly Dictionary<string, MetaExtend> _extend;
+
         /// <summary>
         /// 接口唯一标识
         /// </summary>
@@ -20,14 +22,27 @@ namespace FairyPay.PaymentProviders
         /// </summary>
         public string Description { get; }
 
-        public IDictionary<string, MetaExtend> Extend { get; }
+        public IReadOnlyDictionary<string, MetaExtend> Extend => _extend;
 
         public Meta(string id, string name, string description = null)
         {
             Id = id;
             Name = name;
             Description = description;
-            Extend = new Dictionary<string, MetaExtend>(StringComparer.InvariantCultureIgnoreCase);
+            _extend = new Dictionary<string, MetaExtend>(StringComparer.InvariantCultureIgnoreCase);
+        }
+
+        public void Merge(MetaExtend extend)
+        {
+            _extend[extend.Name] = extend;
+        }
+
+        public void Merge(IEnumerable<MetaExtend> extends)
+        {
+            foreach (var extend in extends)
+            {
+                Merge(extend);
+            }
         }
     }
 

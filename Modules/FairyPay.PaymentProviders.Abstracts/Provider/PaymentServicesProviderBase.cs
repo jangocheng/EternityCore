@@ -11,23 +11,27 @@ using FairyPay.PaymentProviders.Mapping;
 using FairyPay.PaymentProviders.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
 namespace FairyPay.PaymentProviders.Provider
 {
     public abstract class PaymentServicesProviderBase : IPaymentServicesProvider
     {
+        public ILogger Logger { get; set; }
         public Encoding Encoding { get; protected set; } = Encoding.UTF8;
 
 
         protected abstract string GateWay { get; }
         public ProviderSettings Settings { get; }
 
-        private IServiceProvider ServiceProvider { get; set; }
+        protected IServiceProvider ServiceProvider { get; }
 
-        protected PaymentServicesProviderBase(ProviderSettings settings)
+        protected PaymentServicesProviderBase(ProviderSettings settings, IServiceProvider serviceProvider)
         {
             Settings = settings;
+            ServiceProvider = serviceProvider;
+            Logger = serviceProvider.GetRequiredService(typeof(ILogger<>).MakeGenericType(this.GetType())) as ILogger;
         }
 
         public virtual string GenerateOrderId()

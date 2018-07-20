@@ -6,10 +6,9 @@ namespace Eternity.DependencyInjection.Extensions
 {
     public interface IServicesBuilder<in TKey, TService>
     {
-        IServicesBuilder<TKey, TService> Add<T>(TKey key) where T : class, TService;
+        IServicesBuilder<TKey, TService> Add(Type implemtnationType);
 
-        IServicesBuilder<TKey, TService> Add(Type implemtnationType, Func<Metadata, TKey> key);
-
+        IServicesBuilder<TKey, TService> Add(Type[] implemtnationTypes);
         void Build(Action<TService, Metadata> actived = null);
     }
 

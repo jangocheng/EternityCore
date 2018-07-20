@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Text;
 using Eternity.DependencyInjection.Extensions;
 using FairyPay.PaymentProviders.Implementation;
+using FairyPay.PaymentProviders.Provider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using OrchardCore.Modules;
 
 
@@ -36,20 +38,21 @@ namespace FairyPay.PaymentProviders
 
         public override void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddKeyed<string, IPaymentServicesProvider>(Assembly.GetExecutingAssembly(), meta =>
+            services.AddKeyed<IPaymentServicesProvider>(Assembly.GetExecutingAssembly().GetImplemtnationTypes<IPaymentServicesProvider>(), meta =>
             {
                 var providerMeta = meta.ValueType.GetCustomAttribute<Meta>();
-                foreach (var extend in meta.ValueType.GetCustomAttributes<MetaExtend>())
-                {
-                    providerMeta.Extend.Add(extend.Name, extend);
-                }
+                providerMeta.Merge(meta.ValueType.GetCustomAttributes<MetaExtend>());
                 meta["meta"] = providerMeta;
-
                 return providerMeta.Id;
-            }).Build((provider, meta) => { provider.Meta = meta["meta"] as Meta; });
 
+            }).Build((instance, meta) =>
+            {
+                (instance as PaymentServicesProviderBase).Meta = meta["meta"] as Meta;
+            });
 
         }
+
+
     }
 }
+

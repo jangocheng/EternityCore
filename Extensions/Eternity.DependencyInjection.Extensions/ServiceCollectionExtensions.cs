@@ -9,36 +9,27 @@ namespace Eternity.DependencyInjection.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServicesBuilder<TKey, TService> AddKeyed<TKey, TService>(this IServiceCollection services)
+
+        public static Type[] GetImplemtnationTypes<T>(this Assembly assembly)
         {
-            return new ServicesBuilder<TKey, TService>(services);
-        }
-
-        public static IServicesBuilder<TKey, TService> AddKeyed<TKey, TService>(this IServiceCollection services, IEnumerable<Type> implemtnationTypes, Func<Type, TKey> key)
-        {
-
-            var builder = new ServicesBuilder<TKey, TService>(services);
-            foreach (var type in implemtnationTypes)
-            {
-                builder.Add(implemtnationType: type, key: key(type));
-            }
-
-            return builder;
-        }
-
-        public static IServicesBuilder<TKey, TService> AddKeyed<TKey, TService>(this IServiceCollection services, Assembly assembly, Func<Metadata, TKey> key)
-        {
-            var serviceType = typeof(TService);
-            var builder = new ServicesBuilder<TKey, TService>(services);
-
+            var serviceType = typeof(T);
             var implemtnationTypes = assembly.ExportedTypes.Where(t => !t.IsAbstract && t.IsClass && serviceType.IsAssignableFrom(t));
-            foreach (var type in implemtnationTypes)
-            {
-                builder.Add(type, key);
-            }
+            return implemtnationTypes.ToArray();
+        }
 
+
+        public static IServicesBuilder<TKey, TService> AddKeyed<TKey, TService>(this IServiceCollection services, Type[] types, Func<Metadata, TKey> getKey = null)
+        {
+            var builder = new ServicesBuilder<TKey, TService>(services, getKey);
+            builder.Add(types);
             return builder;
         }
+
+        public static IServicesBuilder<string, TService> AddKeyed<TService>(this IServiceCollection services, Type[] types, Func<Metadata, string> getKey = null)
+        {
+            return AddKeyed<string, TService>(services, types, getKey);
+        }
+
 
     }
 }

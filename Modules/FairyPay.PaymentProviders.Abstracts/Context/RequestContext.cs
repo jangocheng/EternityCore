@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using FairyPay.PaymentProviders.Models;
 using FairyPay.PaymentProviders.Provider;
 
-namespace FairyPay.PaymentProviders
+namespace FairyPay.PaymentProviders.Context
 {
     public class RequestContext
     {

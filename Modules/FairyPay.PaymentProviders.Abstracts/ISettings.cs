@@ -15,7 +15,7 @@ namespace FairyPay.PaymentProviders
         /// </summary>
         Remote
     }
-    public interface ISettings
+    public interface ISettingsLoader
     {
         decimal MinAmount { get; }
 

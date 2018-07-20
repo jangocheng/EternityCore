@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Eternity.DependencyInjection.Extensions
 {
@@ -9,7 +10,7 @@ namespace Eternity.DependencyInjection.Extensions
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly Action<TService, Metadata> _actived;
-
+        public IReadOnlyDictionary<TKey, Metadata> Meta { get; }
         public KeyedServicesFactory(IServiceProvider serviceProvider, Dictionary<TKey, Metadata> meta,
             Action<TService, Metadata> actived = null)
         {
@@ -20,19 +21,31 @@ namespace Eternity.DependencyInjection.Extensions
 
         public TService GetService(TKey key, params object[] p)
         {
-            if (!Meta.TryGetValue(key, out var meta))
-                throw new ArgumentException("No service is registered for given key");
-            //var service=(TService)_serviceProvider.GetService(implementationType);
+            /* var types = new Type[] { typeof(TKey) }.Union(_paramTypes).Union(new[] { typeof(TService) }).ToArray();
 
-            var service = (TService)Activator.CreateInstance(meta.ValueType, p);
+             dynamic instanceProxy = _serviceProvider.GetService(Type.GetType("System.Func`" + (p.Length + 2)).MakeGenericType(types));
 
-            _actived?.Invoke(service, meta);
-            return service;
+             var instance = instanceProxy.DynamicInvoke(new object[] { key }.Union(p).ToArray());
+             if (instance != null)
+             {
+                 _actived?.Invoke(instance, Meta[key]);
+             }
+             return instance;*/
+
+            if (Meta.TryGetValue(key, out var md))
+            {
+                var instance = (TService)ActivatorUtilities.CreateInstance(_serviceProvider, md.ValueType, p);
+                if (instance != null)
+                {
+                    _actived?.Invoke(instance, md);
+                    return instance;
+                }
+
+            }
+
+            return default(TService);
+
+
         }
-
-        public IReadOnlyDictionary<TKey, Metadata> Meta { get; }
-
-
-
     }
 }

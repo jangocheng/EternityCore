@@ -7,7 +7,7 @@ namespace FairyPay.PaymentProviders.Provider
 {
     public interface IPaymentServicesProviderFactory
     {
-        ISettings Settings { get; }
+        ISettingsLoader Settings { get; }
         IDictionary<string, IDictionary<BankCode, string>> BanksCode { get; }
         IDictionary<string, Meta> GetProvidersDescriptor { get; }
 

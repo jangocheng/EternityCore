@@ -6,6 +6,8 @@ using FairyPay.PaymentProviders;
 using FairyPay.PaymentProviders.Mapping;
 using FairyPay.PaymentProviders.Models;
 using FairyPay.PaymentProviders.Provider;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace FairyPay.PaymentProviders.Implementation
 {
@@ -22,9 +24,10 @@ namespace FairyPay.PaymentProviders.Implementation
         }
 
         protected override string SignFieldName => "sign";
-
-        public ZfServicesProvider(ProviderSettings settings) : base(settings)
+        [ActivatorUtilitiesConstructor]
+        public ZfServicesProvider( ILogger<ZfServicesProvider> logger, ProviderSettings settings, IServiceProvider serviceProvider) : base(settings, serviceProvider)
         {
+            var aa = 1;
         }
 
         public override decimal ConvertAmount(decimal amount)

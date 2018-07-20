@@ -33,9 +33,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairyPay.PaymentProviders.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairyPay.Gateway", "Modules\FairyPay.Gateway\FairyPay.Gateway.csproj", "{120096B3-6436-4BD1-BD06-B3DB8F773176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eternity.DependencyInjection.Extensions", "Extensions\Eternity.DependencyInjection.Extensions\Eternity.DependencyInjection.Extensions.csproj", "{59522E79-ABED-49A0-85CD-1774DF4CF9BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eternity.DependencyInjection.Extensions", "Extensions\Eternity.DependencyInjection.Extensions\Eternity.DependencyInjection.Extensions.csproj", "{59522E79-ABED-49A0-85CD-1774DF4CF9BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{E91FE4BB-6D40-4B40-A3B1-260B19018573}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{D9DE21D9-796C-45C4-8438-BA0B5C45EC92}"
+	ProjectSection(SolutionItems) = preProject
+		git.txt = git.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

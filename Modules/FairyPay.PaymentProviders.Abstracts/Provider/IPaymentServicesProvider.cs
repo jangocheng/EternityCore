@@ -9,7 +9,7 @@ namespace FairyPay.PaymentProviders
         /// <summary>
         /// 支付接口元数据
         /// </summary>
-        Meta Meta { get; set; }
+        Meta Meta { get;}
         /// <summary>
         /// 金额转换
         /// </summary>
