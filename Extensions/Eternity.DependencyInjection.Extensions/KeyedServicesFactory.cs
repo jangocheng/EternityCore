@@ -21,16 +21,6 @@ namespace Eternity.DependencyInjection.Extensions
 
         public TService GetService(TKey key, params object[] p)
         {
-            /* var types = new Type[] { typeof(TKey) }.Union(_paramTypes).Union(new[] { typeof(TService) }).ToArray();
-
-             dynamic instanceProxy = _serviceProvider.GetService(Type.GetType("System.Func`" + (p.Length + 2)).MakeGenericType(types));
-
-             var instance = instanceProxy.DynamicInvoke(new object[] { key }.Union(p).ToArray());
-             if (instance != null)
-             {
-                 _actived?.Invoke(instance, Meta[key]);
-             }
-             return instance;*/
 
             if (Meta.TryGetValue(key, out var md))
             {
