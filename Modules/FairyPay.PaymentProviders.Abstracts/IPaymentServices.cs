@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FairyPay.PaymentProviders
 {
-    public class BankDescriptorManager
+    public interface IPaymentServices
     {
     }
 }

@@ -13,7 +13,7 @@ namespace FairyPay.PaymentProviders.Implementation
 {
     [Meta("zfpay", "众付")]
     [MetaExtend("MSecret", "商户Secret", "由平台分配")]
-    public class ZfServicesProvider : PaymentServicesProviderBase
+    public class ZfPaymentServicesProvider : PaymentServicesProviderBase
     {
         protected override string GateWay { get; } = "http://pay.hezhongpay.com/";
 
@@ -25,7 +25,7 @@ namespace FairyPay.PaymentProviders.Implementation
 
         protected override string SignFieldName => "sign";
         [ActivatorUtilitiesConstructor]
-        public ZfServicesProvider( ILogger<ZfServicesProvider> logger, ProviderSettings settings, IServiceProvider serviceProvider) : base(settings, serviceProvider)
+        public ZfPaymentServicesProvider(ProviderSettings settings, ILogger<ZfPaymentServicesProvider> logger, IServiceProvider serviceProvider) : base(settings, serviceProvider)
         {
             var aa = 1;
         }

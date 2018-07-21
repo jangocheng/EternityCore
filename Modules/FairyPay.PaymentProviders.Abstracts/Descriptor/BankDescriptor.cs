@@ -13,15 +13,19 @@ namespace FairyPay.PaymentProviders.Context
 
         public string Alias
         {
-            get { return _alias ?? Name; }
-            set { _alias = value; }
+            get => _alias ?? Name;
+            set => _alias = value;
         }
-
-        public BankCode BankCode { get; }
+ 
+        public BankCode BankCode { get; set; }
 
         public BankDescriptor(BankCode bankCode)
         {
             BankCode = bankCode;
+        }
+
+        public BankDescriptor()
+        {
         }
 
         public BankDescriptor(string codeText)

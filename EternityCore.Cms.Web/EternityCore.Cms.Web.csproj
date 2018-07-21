@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>EternityCore.Cms.Web</AssemblyName>
     <RootNamespace>EternityCore.Cms.Web</RootNamespace>
+    <UserSecretsId>c21e50e6-5185-42bc-85dc-4d1184f0a806</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove=".filenesting.json" />
+    <Content Remove="web.Debug.config" />
+    <Content Remove="web.Release.config" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,7 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modules\FairyPay.Gateway\FairyPay.Gateway.csproj" />
     <ProjectReference Include="..\Modules\FairyPay.PaymentProviders\FairyPay.PaymentProviders.csproj" />
     <ProjectReference Include="..\Modules\FairyPay\FairyPay.csproj" />
     <ProjectReference Include="..\Modules\OrchardCore.Data.EntityFrameworkCore\OrchardCore.Data.EntityFrameworkCore.csproj" />
