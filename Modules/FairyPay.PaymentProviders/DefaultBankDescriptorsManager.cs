@@ -12,16 +12,14 @@ namespace FairyPay.PaymentProviders
 {
     public class DefaultBankDescriptorsManager : IBankDescriptorManager
     {
-        private readonly ILogger<DefaultBankDescriptorsManager> _logger;
-
         public DefaultBankDescriptorsManager(IOptionsMonitor<BankDescriptorsOption> options, ILogger<DefaultBankDescriptorsManager> logger)
         {
-            _logger = logger;
             AsDict(options);
             options.OnChange(o =>
             {
                 AsDict(options);
-                _logger.LogDebug("asdfdsaf");
+                if (logger.IsEnabled(LogLevel.Debug))
+                    logger.LogDebug("配置自动更新{0}个描述器", Descriptors.Count);
             });
         }
 
@@ -30,7 +28,8 @@ namespace FairyPay.PaymentProviders
 
         private void AsDict(IOptionsMonitor<BankDescriptorsOption> options)
         {
-            Descriptors = options.CurrentValue.Descriptors.ToDictionary(k => k.BankCode);
+            lock (options)
+                Descriptors = options.CurrentValue.Descriptors.ToDictionary(k => k.BankCode);
         }
     }
 }
