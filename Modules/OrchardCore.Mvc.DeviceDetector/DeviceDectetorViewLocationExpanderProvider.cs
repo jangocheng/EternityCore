@@ -35,11 +35,12 @@ namespace OrchardCore.Mvc.DeviceDetector
 
         public void PopulateValues(ViewLocationExpanderContext context)
         {
-            var request = context.ActionContext.HttpContext.Request;
+            var httpContext = context.ActionContext.HttpContext;
             foreach (var d in _deviceOptions.Dectetors)
             {
-                if (!d.Value(request)) continue;
+                if (!d.Value(httpContext.Request)) continue;
                 context.Values.Add(ValueKey, d.Key);
+                httpContext.Items[ValueKey] = d.Key;
                 break;
             }
         }

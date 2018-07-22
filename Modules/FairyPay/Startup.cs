@@ -19,6 +19,7 @@ using OrchardCore.Settings;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Eternity.DependencyInjection.Extensions;
+using FairyPay.Entity;
 
 namespace FairyPay
 {
@@ -40,7 +41,7 @@ namespace FairyPay
                template: "FairyPay",
                defaults: new { controller = "Home", action = "Index" }
            );
-
+       
 
         }
 
@@ -53,6 +54,7 @@ namespace FairyPay
             services.AddScoped<IRecipeStepHandler, FairyPayRecipeHandler>();
             services.AddScoped<IResourceManifestProvider, ResourceManifest>();
 
+            services.RegisterEntityConfiguration<PayProviderSettingsTypeConfig>();
         }
     }
 }

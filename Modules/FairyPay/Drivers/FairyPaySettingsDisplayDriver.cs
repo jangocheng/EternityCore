@@ -3,9 +3,7 @@ using FairyPay.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using OrchardCore.Settings;
-using OrchardCore.DisplayManagement;
 using OrchardCore.Entities.DisplayManagement;
-using OrchardCore.DisplayManagement.Handlers;
 
 
 namespace FairyPay.Drivers
@@ -16,14 +14,14 @@ namespace FairyPay.Drivers
 
         public override IDisplayResult Edit(PaySettings section)
         {
-            return Combine(
 
-                Initialize<PaySettings>("PaySettings_Edit", model =>
-                {
-                    model.LoginEnabled = section.LoginEnabled;
-                })
-                .Location("Content:5")
-                .OnGroup(GroupId));
+
+            return Initialize<PaySettings>("PaySettings_Edit", model =>
+             {
+                 model.LoginEnabled = section.LoginEnabled;
+             })
+               .Location("Content:5")
+               .OnGroup(GroupId);
         }
 
         public override async Task<IDisplayResult> UpdateAsync(PaySettings section, IUpdateModel updater, string groupId)

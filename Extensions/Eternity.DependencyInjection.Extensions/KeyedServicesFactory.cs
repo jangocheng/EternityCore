@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Eternity.DependencyInjection.Extensions
@@ -11,6 +9,7 @@ namespace Eternity.DependencyInjection.Extensions
         private readonly IServiceProvider _serviceProvider;
         private readonly Action<TService, Metadata> _actived;
         public IReadOnlyDictionary<TKey, Metadata> Meta { get; }
+
         public KeyedServicesFactory(IServiceProvider serviceProvider, Dictionary<TKey, Metadata> meta,
             Action<TService, Metadata> actived = null)
         {
@@ -21,21 +20,17 @@ namespace Eternity.DependencyInjection.Extensions
 
         public TService GetService(TKey key, params object[] p)
         {
-
             if (Meta.TryGetValue(key, out var md))
             {
-                var instance = (TService)ActivatorUtilities.CreateInstance(_serviceProvider, md.ValueType, p);
+                var instance = (TService) ActivatorUtilities.CreateInstance(_serviceProvider, md.ValueType, p);
                 if (instance != null)
                 {
                     _actived?.Invoke(instance, md);
                     return instance;
                 }
-
             }
 
             return default(TService);
-
-
         }
     }
 }

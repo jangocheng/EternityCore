@@ -35,6 +35,7 @@ namespace FairyPay.Controllers
             var ss = this.GetService<IKeyedServicesFactory<string, IPaymentServicesProvider>>();
             var aab = ss.GetService("zfpay", new ProviderSettings { });
             var aad = this.GetService<IBankDescriptorManager>();
+           var aadd= this.GetService<DBContext>().Set<PayType>().ToList();
             var aa = 1;
             return Content(aa.ToString());
         }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using OrchardCore.Environment.Shell.Builders.Models;
-using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-
+using OrchardCore.Navigation;
+using OrchardCore.Settings;
+using System;
+using System.Linq;
 
 namespace OrchardCore.Data
 {
@@ -17,23 +17,36 @@ namespace OrchardCore.Data
 
     public abstract class DbContext<TContext, T> : DbContext where T : IEntity where TContext : DbContext
     {
-        protected DbContext(DbContextOptions<TContext> options) : base(options) { }
+        protected DbContext(DbContextOptions<TContext> options) : base(options)
+        {
+
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var interfaceType = typeof(T);
+            var entityTypeManager = this.GetService<EntityTypeManager>();
 
-            var shellBlueprint = this.GetService<ShellBlueprint>();
-            var entities = shellBlueprint.Dependencies.Keys.Where(w => w.IsClass && !w.IsAbstract && interfaceType.IsAssignableFrom(w));
-
-            foreach (var entity in entities)
+            entityTypeManager.GetEntityTypes<T>().AsParallel().ForAll(type =>
             {
-                if (modelBuilder.Model.FindEntityType(entity) != null)
-                    continue;
-                modelBuilder.Entity(entity);
+                modelBuilder.Model.GetOrAddEntityType(type);
+            });
 
-            }
+            entityTypeManager.Registers.AsParallel().ForAll(config => { config.Register(modelBuilder); });
+
+
+
             base.OnModelCreating(modelBuilder);
         }
 
+        public PagedQuery<TSource> Paged<TSource>(Func<DbContext, IOrderedQueryable<TSource>> func, PagerParameters pagerParameters, int count) where TSource : class
+        {
+            var pager = new Pager(pagerParameters, this.GetService<ISite>().MaxPageSize);
+
+            return func(this).Paged(pager, count);
+        }
+        public PagedQuery<TSource> Paged<TSource>(Func<DbContext, int> countQuery, Func<DbContext, IOrderedQueryable<TSource>> func, PagerParameters pagerParameters) where TSource : class
+        {
+            return Paged(func, pagerParameters, countQuery(this));
+        }
     }
 }
+

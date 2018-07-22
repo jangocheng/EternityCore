@@ -27,34 +27,34 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.4.0-beta3" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
-    <PackageReference Include="OrchardCore.Admin" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Application.Targets" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.BackgroundTasks" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.CustomSettings" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.DeferredTasks" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Diagnostics" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.DisplayManagement.Liquid" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.DynamicCache" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Environment.Cache" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Environment.Shell.Data" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Features" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.HomeRoute" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Hosting.Console" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Localization" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Logging.NLog" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Navigation" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Recipes" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Resources" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Roles" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Scripting" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Settings" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Setup" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Tenants" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Themes" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="OrchardCore.Users" Version="1.0.0-beta2-67581" />
-    <PackageReference Include="TheAdmin" Version="1.0.0-beta2-67581" />
+    <PackageReference Include="OrchardCore.Admin" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Application.Targets" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.BackgroundTasks" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.CustomSettings" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.DeferredTasks" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Diagnostics" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.DisplayManagement.Liquid" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.DynamicCache" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Environment.Cache" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Environment.Shell.Data" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Features" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.HomeRoute" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Hosting.Console" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Localization" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Logging.NLog" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Navigation" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Recipes" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Resources" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Roles" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Scripting" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Settings" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Setup" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Tenants" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Themes" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="OrchardCore.Users" Version="1.0.0-beta2-67846" />
+    <PackageReference Include="TheAdmin" Version="1.0.0-beta2-67846" />
   </ItemGroup>
 
   <ItemGroup>

@@ -36,14 +36,17 @@ namespace Microsoft.Extensions.DependencyInjection
 
         }
 
-        public static void AddEFCore<T>(this IServiceCollection services, string databaseProvider, string connectionString) where T : DbContext
+        public static void AddEFCore<T>(this IServiceCollection services, string databaseProvider, string connectionString) where T : DbContext<T, IEntity>
         {
-            services.AddDbContextPool<T>(options =>
+            services.AddDbContextPool<T>((sp, options) =>
             {
                 switch (databaseProvider)
                 {
                     case "Sqlite":
                         options.UseSqlite(connectionString);
+                        break;
+                    case "MySql":
+                        options.UseMySql(connectionString);
                         break;
                     case "SqlServer":
                         options.UseSqlServer(connectionString);
@@ -52,6 +55,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         throw new ArgumentException("Unknown database provider: " + databaseProvider);
                 }
             });
+            services.AddTransient<EntityTypeManager>();
+
+        }
+
+        public static void RegisterEntityConfiguration<TEntity>(this IServiceCollection services) where TEntity : class, IEntityTypeConfigurationRegister
+        {
+            services.AddTransient<IEntityTypeConfigurationRegister, TEntity>();
         }
 
     }

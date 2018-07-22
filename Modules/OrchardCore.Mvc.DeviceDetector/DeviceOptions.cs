@@ -13,18 +13,15 @@ namespace OrchardCore.Mvc.DeviceDetector
 
     public class DeviceOptions
     {
-        internal readonly IDictionary<string, Func<HttpRequest, bool>> Dectetors =
+        private readonly Dictionary<string, Func<HttpRequest, bool>> _dectetors =
             new Dictionary<string, Func<HttpRequest, bool>>(StringComparer.InvariantCultureIgnoreCase);
 
-        public DeviceOptions()
-        {
 
-        }
-
+        public IReadOnlyDictionary<string, Func<HttpRequest, bool>> Dectetors =>  _dectetors;
 
         public void AddDetector(string deviceType, Func<HttpRequest, bool> dectetor)
         {
-            Dectetors[deviceType] = dectetor;
+            _dectetors[deviceType] = dectetor;
         }
     }
 }
